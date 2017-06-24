@@ -1,0 +1,225 @@
+swagger: '2.0'
+info:
+  description: |
+    中豪螺蛳湾电子收费项目的对外API文档。
+  version: 1.0.0
+  title: 收费电子化API文档
+  contact:
+    email: xn@enzhico.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: enzhico.com
+basePath: /api/v1
+tags:
+  - name: 商铺
+    description: 商铺相关操作
+  - name: 用户
+    description: 用户相关的操作
+schemes:
+  - https
+paths:
+  /users:
+    get:
+      tags:
+        - 用户
+      summary: 获取用户列表
+      description: 获取用户列表，有多少返回多少，没有分页
+      operationId: listUsers
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: 成功返回
+          schema:
+            type: string
+          headers:
+            X-Rate-Limit:
+              type: integer
+              format: int32
+              description: 每小时运行调用次数
+            X-Expires-After:
+              type: string
+              format: date-time
+              description: 'token过期时间, UTC格式'
+        '400':
+          description: 非法的请求
+    post:
+      tags:
+        - 用户
+      summary: 创建一个新用户
+      description: 这个操作必须要有相应的创建用户权限才能操作.
+      operationId: createUser
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: 用户数据
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: 创建成功
+          schema:
+            type: string
+          headers:
+            X-Rate-Limit:
+              type: integer
+              format: int32
+              description: 每小时运行调用次数
+            X-Expires-After:
+              type: string
+              format: date-time
+              description: 'token过期时间, UTC格式'
+        default:
+          description: successful operation
+    put:
+      tags:
+        - 用户
+      summary: 更新一个用户
+      description: 这个操作必须要有相应的创建用户权限才能操作.
+      operationId: updateUser
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: 用户数据
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: 更新成功
+          schema:
+            type: string
+          headers:
+            X-Rate-Limit:
+              type: integer
+              format: int32
+              description: calls per hour allowed by the user
+            X-Expires-After:
+              type: string
+              format: date-time
+              description: date in UTC when token expires
+        default:
+          description: successful operation
+  '/users/{id}':
+    get:
+      tags:
+        - 用户
+      summary: 获取单个用户的详细信息
+      description: 获取单个用户的详细信息，id作为参数
+      operationId: getUserById
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 用户ID，用来作为查询主键
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/User'
+        '400':
+          description: 非法请求参数
+        '404':
+          description: 没有找到该用户，数据库里面不存在
+    delete:
+      tags:
+        - 用户
+      summary: 删除用户
+      description: 通过用户的ID删除某个用户
+      operationId: deleteUser
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 要被删除的用户ID
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: 删除成功
+          schema:
+            $ref: '#/definitions/ApiResponse'
+          headers:
+            X-Rate-Limit:
+              type: integer
+              format: int32
+              description: 每小时运行调用次数
+            X-Expires-After:
+              type: string
+              format: date-time
+              description: 'token过期时间, UTC格式'
+          examples:
+            code: 200
+            type: S001
+            message: 成功删除了
+        '400':
+          description: 非法请求参数
+        '404':
+          description: 没有找到该用户，数据库里面不存在
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+    description: 接口调用授权使用api key
+definitions:
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        description: 主键ID
+      name:
+        type: string
+        description: 用户名
+      age:
+        type: integer
+        format: int32
+        description: 年龄
+      password:
+        type: string
+        description: 密码
+      createdTime:
+        type: string
+        description: 创建时间
+        pattern: '\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+        example: '2017-02-21 12:33:56'
+      updatedTime:
+        type: string
+        description: 创建时间
+        format: date-time
+        pattern: '\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+        example: '2017-02-22 15:46:15'
+    example:
+      id: 38
+      name: 小二晶
+      age: 12
+      password: 1234565
+      createdTime: 2016-02-12T22:24:56.000Z
+      updatedTime: 2017-02-22T15:46:15.000Z
+    xml:
+      name: User
+  ApiResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+        description: HTTP状态码
+      type:
+        type: string
+        description: 类型
+      message:
+        type: string
+        description: 返回消息

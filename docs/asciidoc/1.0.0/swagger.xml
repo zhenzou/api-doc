@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc maxdepth="3"?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>收费电子化API文档</title>
+<date>2017-06-24 05:24:22</date>
+<revhistory>
+<revision>
+<revnumber>1.0.0</revnumber>
+<date>2017-06-24 05:24:22</date>
+</revision>
+</revhistory>
+</info>
+<chapter xml:id="_overview">
+<title>概览</title>
+<simpara>中豪螺蛳湾电子收费项目的对外API文档。</simpara>
+<section xml:id="_版本信息">
+<title>版本信息</title>
+<simpara><emphasis>版本</emphasis> : 1.0.0</simpara>
+</section>
+<section xml:id="_联系方式">
+<title>联系方式</title>
+<simpara><emphasis>邮箱</emphasis> : <link xl:href="mailto:xn@enzhico.com">xn@enzhico.com</link></simpara>
+</section>
+<section xml:id="_许可信息">
+<title>许可信息</title>
+<simpara><emphasis>许可证</emphasis> : Apache 2.0<?asciidoc-br?>
+<emphasis>许可网址</emphasis> : <link xl:href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</link><?asciidoc-br?>
+<emphasis>服务条款</emphasis> : null</simpara>
+</section>
+<section xml:id="_uri_scheme">
+<title>URI scheme</title>
+<simpara><emphasis>域名</emphasis> : enzhico.com<?asciidoc-br?>
+<emphasis>基础路径</emphasis> : /api/v1<?asciidoc-br?>
+<emphasis>方案</emphasis> : HTTPS</simpara>
+</section>
+<section xml:id="_标签">
+<title>标签</title>
+<itemizedlist>
+<listitem>
+<simpara>商铺 : 商铺相关操作</simpara>
+</listitem>
+<listitem>
+<simpara>用户 : 用户相关的操作</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter xml:id="_paths">
+<title>资源</title>
+<section xml:id="_b1ea253e77519b156debd51c3b3b860a">
+<title>商铺</title>
+<simpara>商铺相关操作</simpara>
+</section>
+<section xml:id="_6352f1a072c12b600cd8669cd91a062d">
+<title>用户</title>
+<simpara>用户相关的操作</simpara>
+<section xml:id="_createuser">
+<title>创建一个新用户</title>
+<literallayout class="monospaced">POST /users</literallayout>
+<section xml:id="_说明">
+<title>说明</title>
+<simpara>这个操作必须要有相应的创建用户权限才能操作.</simpara>
+</section>
+<section xml:id="_参数">
+<title>参数</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="4">
+<colspec colname="col_1" colwidth="11.1111*"/>
+<colspec colname="col_2" colwidth="16.6666*"/>
+<colspec colname="col_3" colwidth="50*"/>
+<colspec colname="col_4" colwidth="22.2223*"/>
+<thead>
+<row>
+<entry align="left" valign="middle">类型</entry>
+<entry align="left" valign="middle">名称</entry>
+<entry align="left" valign="middle">说明</entry>
+<entry align="left" valign="middle">类型</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">Body</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">body</emphasis><?asciidoc-br?>
+<emphasis>必填</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>用户数据</simpara></entry>
+<entry align="left" valign="middle"><simpara><link linkend="_user">User</link></simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_响应">
+<title>响应</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="10*"/>
+<colspec colname="col_2" colwidth="70*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="middle">HTTP代码</entry>
+<entry align="left" valign="middle">说明</entry>
+<entry align="left" valign="middle">类型</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">200</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>创建成功<?asciidoc-br?>
+<emphasis role="strong">头</emphasis> : <?asciidoc-br?>
+<literal>X-Rate-Limit</literal> (integer (int32)) : 每小时运行调用次数.<?asciidoc-br?>
+<literal>X-Expires-After</literal> (string (date-time)) : token过期时间, UTC格式.</simpara></entry>
+<entry align="left" valign="middle"><simpara>string</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">default</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>successful operation</simpara></entry>
+<entry align="left" valign="middle"><simpara>无内容</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_生成">
+<title>生成</title>
+<itemizedlist>
+<listitem>
+<simpara><literal>application/json</literal></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_http请求示例">
+<title>HTTP请求示例</title>
+<section xml:id="_请求_path">
+<title>请求 path</title>
+<screen>/users</screen>
+</section>
+<section xml:id="_请求_body">
+<title>请求 body</title>
+<programlisting language="json" linenumbering="unnumbered">{
+  "id" : 38,
+  "name" : "小二晶",
+  "age" : 12,
+  "password" : 1234565,
+  "createdTime" : "2016-02-12T22:24:56.000+0000",
+  "updatedTime" : "2017-02-22T15:46:15.000+0000"
+}</programlisting>
+</section>
+</section>
+<section xml:id="_http响应示例">
+<title>HTTP响应示例</title>
+<section xml:id="_响应_200">
+<title>响应 200</title>
+<programlisting language="json" linenumbering="unnumbered">"string"</programlisting>
+</section>
+</section>
+</section>
+<section xml:id="_listusers">
+<title>获取用户列表</title>
+<literallayout class="monospaced">GET /users</literallayout>
+<section xml:id="_说明_2">
+<title>说明</title>
+<simpara>获取用户列表，有多少返回多少，没有分页</simpara>
+</section>
+<section xml:id="_响应_2">
+<title>响应</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="10*"/>
+<colspec colname="col_2" colwidth="70*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="middle">HTTP代码</entry>
+<entry align="left" valign="middle">说明</entry>
+<entry align="left" valign="middle">类型</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">200</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>成功返回<?asciidoc-br?>
+<emphasis role="strong">头</emphasis> : <?asciidoc-br?>
+<literal>X-Rate-Limit</literal> (integer (int32)) : 每小时运行调用次数.<?asciidoc-br?>
+<literal>X-Expires-After</literal> (string (date-time)) : token过期时间, UTC格式.</simpara></entry>
+<entry align="left" valign="middle"><simpara>string</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">400</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>非法的请求</simpara></entry>
+<entry align="left" valign="middle"><simpara>无内容</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_生成_2">
+<title>生成</title>
+<itemizedlist>
+<listitem>
+<simpara><literal>application/json</literal></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_http请求示例_2">
+<title>HTTP请求示例</title>
+<section xml:id="_请求_path_2">
+<title>请求 path</title>
+<screen>/users</screen>
+</section>
+</section>
+<section xml:id="_http响应示例_2">
+<title>HTTP响应示例</title>
+<section xml:id="_响应_200_2">
+<title>响应 200</title>
+<programlisting language="json" linenumbering="unnumbered">"string"</programlisting>
+</section>
+</section>
+</section>
+<section xml:id="_updateuser">
+<title>更新一个用户</title>
+<literallayout class="monospaced">PUT /users</literallayout>
+<section xml:id="_说明_3">
+<title>说明</title>
+<simpara>这个操作必须要有相应的创建用户权限才能操作.</simpara>
+</section>
+<section xml:id="_参数_2">
+<title>参数</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="4">
+<colspec colname="col_1" colwidth="11.1111*"/>
+<colspec colname="col_2" colwidth="16.6666*"/>
+<colspec colname="col_3" colwidth="50*"/>
+<colspec colname="col_4" colwidth="22.2223*"/>
+<thead>
+<row>
+<entry align="left" valign="middle">类型</entry>
+<entry align="left" valign="middle">名称</entry>
+<entry align="left" valign="middle">说明</entry>
+<entry align="left" valign="middle">类型</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">Body</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">body</emphasis><?asciidoc-br?>
+<emphasis>必填</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>用户数据</simpara></entry>
+<entry align="left" valign="middle"><simpara><link linkend="_user">User</link></simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_响应_3">
+<title>响应</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="10*"/>
+<colspec colname="col_2" colwidth="70*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="middle">HTTP代码</entry>
+<entry align="left" valign="middle">说明</entry>
+<entry align="left" valign="middle">类型</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">200</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>更新成功<?asciidoc-br?>
+<emphasis role="strong">头</emphasis> : <?asciidoc-br?>
+<literal>X-Rate-Limit</literal> (integer (int32)) : calls per hour allowed by the user.<?asciidoc-br?>
+<literal>X-Expires-After</literal> (string (date-time)) : date in UTC when token expires.</simpara></entry>
+<entry align="left" valign="middle"><simpara>string</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">default</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>successful operation</simpara></entry>
+<entry align="left" valign="middle"><simpara>无内容</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_生成_3">
+<title>生成</title>
+<itemizedlist>
+<listitem>
+<simpara><literal>application/json</literal></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_http请求示例_3">
+<title>HTTP请求示例</title>
+<section xml:id="_请求_path_3">
+<title>请求 path</title>
+<screen>/users</screen>
+</section>
+<section xml:id="_请求_body_2">
+<title>请求 body</title>
+<programlisting language="json" linenumbering="unnumbered">{
+  "id" : 38,
+  "name" : "小二晶",
+  "age" : 12,
+  "password" : 1234565,
+  "createdTime" : "2016-02-12T22:24:56.000+0000",
+  "updatedTime" : "2017-02-22T15:46:15.000+0000"
+}</programlisting>
+</section>
+</section>
+<section xml:id="_http响应示例_3">
+<title>HTTP响应示例</title>
+<section xml:id="_响应_200_3">
+<title>响应 200</title>
+<programlisting language="json" linenumbering="unnumbered">"string"</programlisting>
+</section>
+</section>
+</section>
+<section xml:id="_getuserbyid">
+<title>获取单个用户的详细信息</title>
+<literallayout class="monospaced">GET /users/{id}</literallayout>
+<section xml:id="_说明_4">
+<title>说明</title>
+<simpara>获取单个用户的详细信息，id作为参数</simpara>
+</section>
+<section xml:id="_参数_3">
+<title>参数</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="4">
+<colspec colname="col_1" colwidth="11.1111*"/>
+<colspec colname="col_2" colwidth="16.6666*"/>
+<colspec colname="col_3" colwidth="50*"/>
+<colspec colname="col_4" colwidth="22.2223*"/>
+<thead>
+<row>
+<entry align="left" valign="middle">类型</entry>
+<entry align="left" valign="middle">名称</entry>
+<entry align="left" valign="middle">说明</entry>
+<entry align="left" valign="middle">类型</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">Path</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">id</emphasis><?asciidoc-br?>
+<emphasis>必填</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>用户ID，用来作为查询主键</simpara></entry>
+<entry align="left" valign="middle"><simpara>integer</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_响应_4">
+<title>响应</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="10*"/>
+<colspec colname="col_2" colwidth="70*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="middle">HTTP代码</entry>
+<entry align="left" valign="middle">说明</entry>
+<entry align="left" valign="middle">类型</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">200</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>successful operation</simpara></entry>
+<entry align="left" valign="middle"><simpara><link linkend="_user">User</link></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">400</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>非法请求参数</simpara></entry>
+<entry align="left" valign="middle"><simpara>无内容</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">404</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>没有找到该用户，数据库里面不存在</simpara></entry>
+<entry align="left" valign="middle"><simpara>无内容</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_生成_4">
+<title>生成</title>
+<itemizedlist>
+<listitem>
+<simpara><literal>application/json</literal></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_http请求示例_4">
+<title>HTTP请求示例</title>
+<section xml:id="_请求_path_4">
+<title>请求 path</title>
+<screen>/users/0</screen>
+</section>
+</section>
+<section xml:id="_http响应示例_4">
+<title>HTTP响应示例</title>
+<section xml:id="_响应_200_4">
+<title>响应 200</title>
+<programlisting language="json" linenumbering="unnumbered">{
+  "id" : 38,
+  "name" : "小二晶",
+  "age" : 12,
+  "password" : 1234565,
+  "createdTime" : "2016-02-12T22:24:56.000+0000",
+  "updatedTime" : "2017-02-22T15:46:15.000+0000"
+}</programlisting>
+</section>
+</section>
+</section>
+<section xml:id="_deleteuser">
+<title>删除用户</title>
+<literallayout class="monospaced">DELETE /users/{id}</literallayout>
+<section xml:id="_说明_5">
+<title>说明</title>
+<simpara>通过用户的ID删除某个用户</simpara>
+</section>
+<section xml:id="_参数_4">
+<title>参数</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="4">
+<colspec colname="col_1" colwidth="11.1111*"/>
+<colspec colname="col_2" colwidth="16.6666*"/>
+<colspec colname="col_3" colwidth="50*"/>
+<colspec colname="col_4" colwidth="22.2223*"/>
+<thead>
+<row>
+<entry align="left" valign="middle">类型</entry>
+<entry align="left" valign="middle">名称</entry>
+<entry align="left" valign="middle">说明</entry>
+<entry align="left" valign="middle">类型</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">Path</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">id</emphasis><?asciidoc-br?>
+<emphasis>必填</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>要被删除的用户ID</simpara></entry>
+<entry align="left" valign="middle"><simpara>integer</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_响应_5">
+<title>响应</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="10*"/>
+<colspec colname="col_2" colwidth="70*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="middle">HTTP代码</entry>
+<entry align="left" valign="middle">说明</entry>
+<entry align="left" valign="middle">类型</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">200</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>删除成功<?asciidoc-br?>
+<emphasis role="strong">头</emphasis> : <?asciidoc-br?>
+<literal>X-Rate-Limit</literal> (integer (int32)) : 每小时运行调用次数.<?asciidoc-br?>
+<literal>X-Expires-After</literal> (string (date-time)) : token过期时间, UTC格式.</simpara></entry>
+<entry align="left" valign="middle"><simpara><link linkend="_apiresponse">ApiResponse</link></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">400</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>非法请求参数</simpara></entry>
+<entry align="left" valign="middle"><simpara>无内容</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">404</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>没有找到该用户，数据库里面不存在</simpara></entry>
+<entry align="left" valign="middle"><simpara>无内容</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_生成_5">
+<title>生成</title>
+<itemizedlist>
+<listitem>
+<simpara><literal>application/json</literal></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_http请求示例_5">
+<title>HTTP请求示例</title>
+<section xml:id="_请求_path_5">
+<title>请求 path</title>
+<screen>/users/0</screen>
+</section>
+</section>
+<section xml:id="_http响应示例_5">
+<title>HTTP响应示例</title>
+<section xml:id="_响应_200_5">
+<title>响应 200</title>
+<programlisting language="json" linenumbering="unnumbered">{
+  "code" : 200,
+  "type" : "S001",
+  "message" : "成功删除了"
+}</programlisting>
+</section>
+</section>
+</section>
+</section>
+</chapter>
+<chapter xml:id="_definitions">
+<title>定义</title>
+<section xml:id="_apiresponse">
+<title>ApiResponse</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="16.6666*"/>
+<colspec colname="col_2" colwidth="61.1111*"/>
+<colspec colname="col_3" colwidth="22.2223*"/>
+<thead>
+<row>
+<entry align="left" valign="middle">名称</entry>
+<entry align="left" valign="middle">说明</entry>
+<entry align="left" valign="middle">类型</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">code</emphasis><?asciidoc-br?>
+<emphasis>可选</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>HTTP状态码<?asciidoc-br?>
+<emphasis role="strong">样例</emphasis> : <literal>0</literal></simpara></entry>
+<entry align="left" valign="middle"><simpara>integer (int32)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">message</emphasis><?asciidoc-br?>
+<emphasis>可选</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>返回消息<?asciidoc-br?>
+<emphasis role="strong">样例</emphasis> : <literal>"string"</literal></simpara></entry>
+<entry align="left" valign="middle"><simpara>string</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">type</emphasis><?asciidoc-br?>
+<emphasis>可选</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>类型<?asciidoc-br?>
+<emphasis role="strong">样例</emphasis> : <literal>"string"</literal></simpara></entry>
+<entry align="left" valign="middle"><simpara>string</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_user">
+<title>User</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="16.6666*"/>
+<colspec colname="col_2" colwidth="61.1111*"/>
+<colspec colname="col_3" colwidth="22.2223*"/>
+<thead>
+<row>
+<entry align="left" valign="middle">名称</entry>
+<entry align="left" valign="middle">说明</entry>
+<entry align="left" valign="middle">类型</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">age</emphasis><?asciidoc-br?>
+<emphasis>可选</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>年龄<?asciidoc-br?>
+<emphasis role="strong">样例</emphasis> : <literal>0</literal></simpara></entry>
+<entry align="left" valign="middle"><simpara>integer (int32)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">createdTime</emphasis><?asciidoc-br?>
+<emphasis>可选</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>创建时间<?asciidoc-br?>
+<emphasis role="strong">模式</emphasis> : <literal>"\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}"</literal><?asciidoc-br?>
+<emphasis role="strong">样例</emphasis> : <literal>"2017-02-21 12:33:56"</literal></simpara></entry>
+<entry align="left" valign="middle"><simpara>string</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">id</emphasis><?asciidoc-br?>
+<emphasis>可选</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>主键ID<?asciidoc-br?>
+<emphasis role="strong">样例</emphasis> : <literal>0</literal></simpara></entry>
+<entry align="left" valign="middle"><simpara>integer (int64)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">name</emphasis><?asciidoc-br?>
+<emphasis>可选</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>用户名<?asciidoc-br?>
+<emphasis role="strong">样例</emphasis> : <literal>"string"</literal></simpara></entry>
+<entry align="left" valign="middle"><simpara>string</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">password</emphasis><?asciidoc-br?>
+<emphasis>可选</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>密码<?asciidoc-br?>
+<emphasis role="strong">样例</emphasis> : <literal>"string"</literal></simpara></entry>
+<entry align="left" valign="middle"><simpara>string</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="middle"><simpara><emphasis role="strong">updatedTime</emphasis><?asciidoc-br?>
+<emphasis>可选</emphasis></simpara></entry>
+<entry align="left" valign="middle"><simpara>创建时间<?asciidoc-br?>
+<emphasis role="strong">样例</emphasis> : <literal>"2017-02-22 15:46:15"</literal></simpara></entry>
+<entry align="left" valign="middle"><simpara>string (date-time)</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+</chapter>
+<chapter xml:id="_securityscheme">
+<title>安全</title>
+<section xml:id="_api_key">
+<title>api_key</title>
+<simpara><emphasis>类型</emphasis> : apiKey<?asciidoc-br?>
+<emphasis>名称</emphasis> : api_key<?asciidoc-br?>
+<emphasis>在</emphasis> : HEADER</simpara>
+</section>
+</chapter>
+</book>
