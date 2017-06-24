@@ -1,5 +1,7 @@
-= 收费电子化API文档
+:toclevels: 3
+:numbered:
 
+= 收费电子化API文档
 
 [[_overview]]
 == 概览
